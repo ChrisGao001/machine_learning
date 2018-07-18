@@ -17,8 +17,9 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 
 class EnsembleModel(object):
-	def __init__(self, n_folds=3, models=None):
+	def __init__(self, n_folds=3, models=None, shuffle=False):
 		self.n_folds_ = n_folds
+		self.shuffle_ = shuffle
 		if models:
 			self.models_ = models
 		else:
@@ -29,6 +30,11 @@ class EnsembleModel(object):
 		        GradientBoostingClassifier(learning_rate=0.05, subsample=0.5, max_depth=6, n_estimators=50)]
 
 	def fit(self, x, y, test_x):
+		if self.shuffle_:
+			idx = np.random.permutation(y.size)
+		    x = x[idx]
+			y = y[idx]
+
 		skf = StratifiedKFold(y, self.n_folds_)
 		num_model = len(self.models_)
 		print(x.shape[0])
