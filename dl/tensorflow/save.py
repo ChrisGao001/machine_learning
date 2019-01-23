@@ -1,6 +1,6 @@
 import tensorflow as tf
 import os.path
-
+# Refer https://www.jianshu.com/p/8850127ed25d
 def save(sess, model_path):
 	saver = tf.train.Saver()
 	saver.save(sess, model_path)
