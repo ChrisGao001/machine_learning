@@ -1,0 +1,3 @@
+[submodule "3rdparty/cluster/kmodes"]
+	path = 3rdparty/cluster/kmodes
+	url = git@github.com:nicodv/kmodes.git
